@@ -20,7 +20,7 @@ bld/
 [Oo]bj/
 
 # except bin/www, which is used in NodeJS Express progects:
-![Bb]in/www
+![Bb]in/www*
 
 
 # Roslyn cache directories
