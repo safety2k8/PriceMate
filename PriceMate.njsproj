@@ -31,9 +31,18 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.js" />
+    <Compile Include="data\dataRepository.js" />
+    <Compile Include="models\base.js" />
+    <Compile Include="models\shop.js" />
     <Compile Include="routes\index.js" />
+    <Compile Include="routes\shops.js" />
     <Compile Include="routes\users.js" />
     <Compile Include="bin\www" />
+    <Content Include="coffee\data\dataRepository.coffee" />
+    <Content Include="coffee\models\base.coffee" />
+    <Content Include="coffee\models\shop.coffee" />
+    <Content Include="coffee\routes\shops.coffee" />
+    <Content Include="data\data.json" />
     <Content Include="package.json" />
     <Content Include="public\stylesheets\style.styl" />
     <Content Include="README.md" />
@@ -43,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="bin\" />
+    <Folder Include="coffee\" />
+    <Folder Include="coffee\data\" />
+    <Folder Include="coffee\models\" />
+    <Folder Include="coffee\routes\" />
+    <Folder Include="data\" />
+    <Folder Include="models\" />
     <Folder Include="public\" />
     <Folder Include="public\images\" />
     <Folder Include="public\javascripts\" />

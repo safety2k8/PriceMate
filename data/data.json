@@ -1,0 +1,9 @@
+{
+    "shops": [
+        { "id": 1, "name": "Megamarket" },
+        { "id": 2, "name": "Franca" },
+        { "id": 3, "name": "Maxi" }
+    ],
+    "articles": [ ],
+    "receipts": [ ]
+}
