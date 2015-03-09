@@ -8,7 +8,7 @@ Shop = require('../models/shop');
 router = express.Router();
 
 router.get('/', function(req, res, next) {
-  return Shop.select(function(err, result) {
+  return Shop.find(function(err, result) {
     if (err) {
       return next(err);
     }
@@ -35,11 +35,21 @@ router.get('/:id', function(req, res, next) {
 });
 
 router.put('/:id', function(req, res) {
-  return res.json(Shop.update(req.body));
+  return Shop.update(req.params.id, req.body, function(err, result) {
+    if (err) {
+      return next(err);
+    }
+    return res.json(result);
+  });
 });
 
 router["delete"]('/:id', function(req, res) {
-  return res.json(Shop["delete"](req.params.id));
+  return Shop.remove(req.params.id, function(err, result) {
+    if (err) {
+      return next(err);
+    }
+    return res.json(result);
+  });
 });
 
 module.exports = router;

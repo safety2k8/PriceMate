@@ -6,23 +6,26 @@ class Shop extends BaseModel
         super options
         { @name } = options if options
       
-    @select: (callback) ->
+    @find: (callback) ->
         dataRepository.shops.select {}, (err, result) ->
             callback? err, (new Shop shop for shop in result if result?)
 
     @create: (shop, callback) ->
-        dataRepository.shops.create shop, (err, result) ->
+        dataRepository.shops.insert shop, (err, result) ->
             callback? err, (new Shop(result) if result?)
 
     @get: (id, callback) ->
         dataRepository.shops.select { id }, (err, result) ->
             callback? err, (new Shop(result) if result?)
         
-    @update: (shop) ->
-        new Shop(dataRepository.shops.update shop)
+    @update: (id, shop, callback) ->
+        shop?.id = shop?.id || id
+        dataRepository.shops.update shop, (err, result) ->
+            callback? err, (new Shop(result) if result?)
         
-    @remove: (id) ->
-        new Shop(dataRepository.shops.remove id)
+    @remove: (id, callback) ->
+        dataRepository.shops.delete id, (err, result) ->
+            callback? err, (new Shop(result) if result?)
             
         
         

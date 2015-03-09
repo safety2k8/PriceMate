@@ -17,7 +17,7 @@ Shop = (function(_super) {
     }
   }
 
-  Shop.select = function(callback) {
+  Shop.find = function(callback) {
     return dataRepository.shops.select({}, function(err, result) {
       var shop;
       return typeof callback === "function" ? callback(err, ((function() {
@@ -35,7 +35,7 @@ Shop = (function(_super) {
   };
 
   Shop.create = function(shop, callback) {
-    return dataRepository.shops.create(shop, function(err, result) {
+    return dataRepository.shops.insert(shop, function(err, result) {
       return typeof callback === "function" ? callback(err, (result != null ? new Shop(result) : void 0)) : void 0;
     });
   };
@@ -48,12 +48,19 @@ Shop = (function(_super) {
     });
   };
 
-  Shop.update = function(shop) {
-    return new Shop(dataRepository.shops.update(shop));
+  Shop.update = function(id, shop, callback) {
+    if (shop != null) {
+      shop.id = (shop != null ? shop.id : void 0) || id;
+    }
+    return dataRepository.shops.update(shop, function(err, result) {
+      return typeof callback === "function" ? callback(err, (result != null ? new Shop(result) : void 0)) : void 0;
+    });
   };
 
-  Shop.remove = function(id) {
-    return new Shop(dataRepository.shops.remove(id));
+  Shop.remove = function(id, callback) {
+    return dataRepository.shops["delete"](id, function(err, result) {
+      return typeof callback === "function" ? callback(err, (result != null ? new Shop(result) : void 0)) : void 0;
+    });
   };
 
   return Shop;
